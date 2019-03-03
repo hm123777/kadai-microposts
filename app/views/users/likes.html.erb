@@ -1,0 +1,25 @@
+<h1>お気に入り一覧</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>user</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @user.favorites.each do |favorite| %>
+       <% like_user_id = favorite.user_id %>
+       <% like_user = User.find(like_user_id) %>
+       <% like_user_name = like_user.name %>
+       <% like_micropost = Micropost.find(favorite.micropost_id) %>
+       <% like_micropost_content = like_micropost.content %>
+        <tr>
+          <td><%= like_user_name %></td>
+          <td><%= like_micropost_content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<%= link_to 'トップページに戻る', root_url, class: 'btn btn-primary' %>
